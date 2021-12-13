@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <lib/parser.h>
+#include <dialog.h>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -20,5 +22,20 @@ void MainWindow::on_load_clicked()
     QString str;
     str = QFileDialog::getOpenFileName(this, "Выбрать файл");
     ui->label->setText(str);
+
+    Parser *parser = new Parser();
+    parser->loadFile(str);
+    parser->parseFiredEmployes();
+
+    QList<QString> firedEmployes = parser->firedEmployes;
+    foreach (auto firedEmployee, firedEmployes) {
+            qDebug() << firedEmployee;
+        }
+    this->close();
+
+    Dialog *window = new Dialog();
+    window->setModal(true);
+    window->exec();
 }
+
 
