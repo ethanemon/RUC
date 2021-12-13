@@ -13,6 +13,7 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = nullptr);
+    void setupDialog(QList<QString> names);
     ~Dialog();
 
 private:

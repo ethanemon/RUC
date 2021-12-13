@@ -15,8 +15,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-
-
 void MainWindow::on_load_clicked()
 {
     QString str;
@@ -33,9 +31,9 @@ void MainWindow::on_load_clicked()
         }
     this->close();
 
-    Dialog *window = new Dialog();
-    window->setModal(true);
-    window->exec();
+    Dialog *dialog = new Dialog();
+
+    dialog->setupDialog(firedEmployes);
 }
 
 
